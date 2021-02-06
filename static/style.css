@@ -3,6 +3,7 @@ body {
     color:white;
     text-align:center;
     vertical-align:middle;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
 
 a {
@@ -12,10 +13,18 @@ a {
     text-decoration:none;
 }
 
+.change_color {
+    color: lightblue;
+}
+
 a:hover {
     color:lightblue;
     text-decoration:underline;
     transition:0.6s;
+}
+
+img {
+    width: 50vw;
 }
 
 .links {
