@@ -7,6 +7,35 @@ body {
     font-weight:700;
 }
 
+.headers {
+    color: lightblue;
+}
+
+pre {
+    border-radius: 15px;
+    background-color:lightblue;
+    color:black;
+}
+
+.split {
+    display:flex;
+}
+
+.important {
+    color:red;
+}
+
+.split-menu {
+    padding:50px;
+    flex: 0.5;
+}
+
+.split-content {
+    text-align: left;
+    padding:50px;
+    flex: 1.5;
+}
+
 a {
     transition:0.6s;
     font-family:Georgia, 'Times New Roman', Times, serif;

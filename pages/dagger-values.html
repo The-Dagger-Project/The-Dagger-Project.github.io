@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Dagger Lang</title>
+</head>
+<body>
+    <div class="split">
+        <div class="split-menu">
+            <h1>Dagger Lang</h1>
+            <a href="./dagger-lang-docs.html">Introduction</a>
+
+            <hr>
+            <p class="headers">Main Documentation:</p>
+            <hr>
+            <a href="./working-with-dagger.html">Working with Dagger</a><br>
+            <a href="./dagger-values.html">Dagger Values</a><br>
+            <a href="./dagger-user-input.html">User Input</a><br>
+        </div>
+        <div class="split-content">
+            <h1>Dagger Values</h1>
+            <hr>
+            <p>There are 6 general value types, which are referred to as lvals. They are: numbers, strings, errors, functions, S-Expressions, and Q-Expressions.</p>
+            
+            <p>You can define all of them (except errors and functions) using the following syntax:</p>
+<pre>
+<code>
+    dagger> set {myFavoriteNumber} 6   # myFavoriteNumber is an integer
+    ()
+    dagger> myFavoriteNumber
+    6
+    dagger> set {myFavoriteNumberToThePowerOfNegativeOne} 0.166666    # A decimal, of course
+    ()
+    dagger> myFavoriteNumberToThePowerOfNegativeOne
+    0.166666
+    dagger> set {myFavoriteWord} "hello"  # A string
+    ()
+    dagger> myFavoriteWord
+    hello
+    dagger> set {firstTenNumbers} {1 2 3 4 5 6 7 8 9 10}  # A Q-Expression
+    ()
+    dagger> firstTenNumbers
+    {1 2 3 4 5 6 7 8 9 10}
+</code>
+</pre>
+
+            <h2>Numbers</h2>
+            <hr>
+            <p>Numbers can be either integers or decimals. They respect the same upper and lower ranges as "long" and "double" in C.</p>
+<pre>
+<code>
+    dagger> / 10 3
+    3
+    dagger> / 10.0 3.0 # Decimals are always printed with 6 digits after the point
+    3.333333
+</code>
+</pre>
+
+            <h2>Strings</h2>
+            <hr>
+            <p>A string is a number of characters inside double quotes:</p>
+<pre>
+<code>
+    dagger> "Hello World"
+    Hello World
+    dagger> join "Hello" "World"
+    Hello World
+    dagger> print "Hi"
+    Hi
+    ()
+</code>
+</pre>
+
+            <h2>Errors</h2>
+            <hr>
+            Errors are automatically printed when a user tries to execute invalid code. In Dagger, you can make your own custom error with the "error" function followed by a string. An example usage of this would be a function that prints an error whenever somebody forgets a '?' at the end of a question. :)
+<pre>
+<code>
+    dagger> / 10 0
+    Error: Division by Zero!
+    dagger> error "my error"
+    Error: my error
+</code>
+</pre>
+
+            <h2>S-Expressions</h2>
+            <hr>
+            <p>S-Expressions are just code that will be evaluated by the interpreter. By working with the interpreter's prompt, everything is an S-Expression by default. But if you want to evaluate external files, you must wrap your code in parentheses to make it an S-Expression. Nesting is also important for the correct order of evaluation of your code. The interpreter always starts from the innermost S-Expresssion.</p>
+<pre>
+<code>
+    dagger> print + 7 3
+    &lt;builtin&gt; 7 3 # What in the world is this?!?!?
+    ()
+    dagger> print (+ 7 3)
+    10 # Much Better xD 
+    ()
+</code>
+</pre>
+
+            <h2>Q-Expressions</h2>
+            <hr>
+            <p>Q-Expressions are blocks of code that are not meant to be executed. They can be used like arrays in C or lists in Python. However, Dagger more powerful list manipulation functions than both C and Python. For example, the "eval" function converts a Q-Expression into an S-Expression, and the "head" function returns the first item of a Q-Expression.</p>
+<pre>
+<code>
+    dagger> {+ 1 2}
+    {+ 1 2}
+    dagger> eval {+ 1 2}
+    3
+    dagger> head 1 2 3
+    Error: Function 'head' passed incorrect number of arguments. Got 3, Expected 1.
+    dagger> head {1 2 3}
+    {1}
+    dagger> eval (head {1 2 3})
+    1
+</code>
+</pre>
+
+            <h2>Functions</h2>
+            <hr>
+            <p>Functions are a type of value bound to a symbol. When called, a function will perform some action on the arguments it was called with.</p>
+<pre>
+<code>
+    dagger> * 3 6   # '*' is the symbol bound to the multiplication function
+    18
+    dagger> head "hello"   # Head returns the first character of the string
+    h
+    dagger> tail "hello"   # Tail returns all characters except the first one
+    ello
+    dagger> head "abc" "def"  # Head only supports one argument 
+    Error: Function 'head' passed incorrect number of arguments. Got 2, Expected 1.
+</code>
+</pre>
+
+            <p>You can also make custom functions with the "\" symbol. The following syntax is confusing, but there is a function in the standard library which can help. (Yeah, in dagger we have functions that define functions ;) )</p>
+
+<pre>
+<code>
+    dagger> / 12 (* 2 3)
+    2
+    dagger> (\ {x y} {/ 12 (* x y)}) 2 3
+    2
+</code>
+</pre>
+
+            <p>You start by opening a parenthesis with a lambda (\, then, you write a Q-Expression containing all the arguments to the function. Then, another Q-Expression containing the code that the function will execute. For example, the addition function (of two numbers) can be written as (\ {x y} {+ x y})</p>
+
+            <p>The before example can also be written by using the "fun" function in the std library:</p>
+<pre>
+<code>
+    dagger> load "std.dgr"
+    ()
+    dagger> fun {myfunction x y} {/ 12 (* x y)}
+    ()
+    dagger> myfunction 2 3
+    2    
+</code>
+</pre>
+        </div>
+    </div>
+</body>
+</html>

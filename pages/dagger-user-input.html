@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Dagger Lang</title>
+</head>
+<body>
+    <div class="split">
+        <div class="split-menu">
+            <h1>Dagger Lang</h1>
+            <a href="./dagger-lang-docs.html">Introduction</a>
+
+            <hr>
+            <p class="headers">Main Documentation:</p>
+            <hr>
+            <a href="./working-with-dagger.html">Working with Dagger</a><br>
+            <a href="./dagger-values.html">Dagger Values</a><br>
+            <a href="./dagger-user-input.html">User Input</a><br>
+        </div>
+        <div class="split-content">
+            <h1>User Input</h1>
+            <hr>
+            <p>Dagger comes with 3 functions for user input, one for each type of data value. To input an integer, use "readint", to input a decimal, use "readdec", and to input a string, use "readstr".</p>
+<pre>
+<code>
+    dagger> set {a} 0   # Initialize variable
+    ()
+    dagger> readint a
+    (0)
+</code>
+</pre>
+            <p>Okay, something happend.... Variables in dagger are immutable, they can't be changed, so what we're going to do is read the variable while initializing it a second time, as so:</p>
+<pre>
+<code>
+    dagger> set {a} 0
+    ()
+    dagger> = {a} (readint a)  
+    3   # I inputted 3
+    dagger> 
+</code>
+</pre>
+        </div>
+    </div>
+</body>
+</html>

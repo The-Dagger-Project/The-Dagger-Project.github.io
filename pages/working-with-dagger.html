@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Dagger Lang</title>
+</head>
+<body>
+    <div class="split">
+        <div class="split-menu">
+            <h1>Dagger Lang</h1>
+            <a href="./dagger-lang-docs.html">Introduction</a>
+
+            <hr>
+            <p class="headers">Main Documentation:</p>
+            <hr>
+            <a href="./working-with-dagger.html">Working with Dagger</a><br>
+            <a href="./dagger-values.html">Dagger Values</a><br>
+            <a href="./dagger-user-input.html">User Input</a><br>
+        </div>
+        <div class="split-content">
+            <h1>Working with Dagger</h1>
+            <hr>
+            <p>After executing the interpreter with the "dagger" command, you will be presented with the following: </p>
+<pre>
+<code>
+    Dagger Version x.x.x.x.x
+    Press Ctrl+c to Exit
+
+    dagger> 
+</code>
+</pre>
+            <p>You can run lines of code by writing them after "dagger> "</p>
+<pre>
+<code>
+    dagger> print "Hello World"
+    Hello World
+</code>
+</pre>
+            <h1>Polish Notation</h1>
+            <hr>
+            <p>Dagger uses Polish Notation in order to perform more complex mathematical operations. You can read more about it <a href="https://en.wikipedia.org/wiki/Polish_notation">here.</a></p>
+
+            <h1>Evaluating External Files</h1>
+            <hr>
+            <p>You can evaluate external files in two ways:</p>
+            <ol>
+                <li>Run the interpreter with the name of the file:</li>
+<pre>
+<code>
+    dagger hello.dgr
+    Hello
+</code>
+</pre>
+                <li>Run the load function from inside the interpreter prompt:</li>
+<pre>
+<code>
+    dagger> load "hello.dgr"
+    Hello
+</code>
+</pre>
+            </ol>
+
+            <h2 class="important">Note:</h2> <p>
+                In order for expressions to be evaluated in external files, they must be written inside parentheses:
+<pre>
+<code>
+    # This will not be evaluated:
+    print "Hello World!" 
+
+    # This will be evaluated:
+    (print "Hello World!")
+</code>
+</pre>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
