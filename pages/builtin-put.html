@@ -52,7 +52,41 @@
             <a href="./builtin-print.html">Print</a><br>
         </div>
         <div class="split-content">
-            
+            <h1>Builtin Put</h1>
+            <hr>
+            <p>The put function is extremely similar to the set function, with only one difference. As mentioned on the previous page, the set function creates a variable on the global environment (can be used anywhere), whereas the put function creates a variable in the local environment (can only be used in the current scope).</p>
+
+            <h1>Use</h1>
+            <hr>
+<pre>
+<code>
+    = {name} value
+</code>
+</pre>
+
+            <h1>Examples</h1>
+            <hr>
+            <p>To help you better understand scope, we will write this code in an external file, saving it as put-example.dgr:</p>
+<pre>
+<code>
+    (set {func} (\ {x} {
+        (= {y} 12)
+        (print (eval {+ y x}))
+    }))
+
+    (print (func 1))
+    (print y)
+</code>
+</pre>
+            <p>First, we'll explain this chunk of code. We bind the symbol "func" to a lambda function that will do the following: 1) create a <em>local</em> variable called y, and 2) print y + x (it's basically the 'add twelve' function but with a variable. Then, outside of the function, we pass 1 to it, print it, then try to print y. Here's the output: </p>
+<pre>
+<code>
+    13 
+    Error: S-Expression starts with incorrect type. Got S-Expression, Expected Function.
+    Error: Unbound Symbol 'y'
+</code>
+</pre>
+            <p>We see that the first print statement worked, printing 13. However, the second one gives us two errors, but we will pay attention to the second one only: 'Unbound Symbol y'. Because y is a local variable, we can only use it inside of the function, but we tried to access it from outside, thus returning an error.</p>
         </div>
     </div>
 </body>

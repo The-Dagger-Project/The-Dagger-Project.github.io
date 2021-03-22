@@ -52,7 +52,30 @@
             <a href="./builtin-print.html">Print</a><br>
         </div>
         <div class="split-content">
-            
+            <h1>Builtin Set</h1>
+            <hr>
+            <p>The set function is used to create a variable in the global environment (scope). It takes two arguments, a Q-Expression containing the name of the variable, and the value of the variable (the type depends on what type of variable you want it to be). It can also be used to bind functions to symbols, as demonstrated in the previous page.</p>
+
+            <h1>Use</h1>
+            <hr>
+<pre>
+<code>
+    set {name} value
+</code>
+</pre>
+
+            <h1>Examples</h1>
+            <hr>
+            <p>We will declare a variable called myFavoriteNumber and set it to 6:</p>
+<pre>
+<code>
+    dagger> set {myFavoriteNumber} 6
+    ()
+    dagger> myFavoriteNumber
+    6
+</code>
+</pre>
+            <p>The symbol "myFavoriteNumber", is now bound to the number 6, whenever we call myFavoriteNumber, it returns 6.</p>
         </div>
     </div>
 </body>
